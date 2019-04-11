@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import axios from "axios";
 import Message from "./Message";
+import Progress from "./Progress";
 
 const FileUpload = () => {
   const [file, setFile] = useState("");
