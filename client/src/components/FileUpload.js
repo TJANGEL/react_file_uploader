@@ -66,6 +66,7 @@ const FileUpload = () => {
             {filename}
           </label>
         </div>
+        <Progress percentage={uploadPercentage} />
         <input
           type="submit"
           value="Upload"
