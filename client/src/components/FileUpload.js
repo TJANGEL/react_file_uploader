@@ -1,13 +1,13 @@
-import React, { Fragment, useState } from "react";
-import Message from "./Message";
-import Progress from "./Progress";
-import axios from "axios";
+import React, { Fragment, useState } from 'react';
+import Message from './Message';
+import Progress from './Progress';
+import axios from 'axios';
 
 const FileUpload = () => {
-  const [file, setFile] = useState("");
-  const [filename, setFilename] = useState("Choose File");
+  const [file, setFile] = useState('');
+  const [filename, setFilename] = useState('Choose File');
   const [uploadedFile, setUploadedFile] = useState({});
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const [uploadPercentage, setUploadPercentage] = useState(0);
 
   const onChange = e => {
@@ -18,12 +18,12 @@ const FileUpload = () => {
   const onSubmit = async e => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append('file', file);
 
     try {
-      const res = await axios.post("/upload", formData, {
+      const res = await axios.post('/upload', formData, {
         headers: {
-          "Content-Type": "multipart/form-data"
+          'Content-Type': 'multipart/form-data'
         },
         onUploadProgress: progressEvent => {
           setUploadPercentage(
@@ -41,10 +41,10 @@ const FileUpload = () => {
 
       setUploadedFile({ fileName, filePath });
 
-      setMessage("File Uploaded");
+      setMessage('File Uploaded');
     } catch (err) {
       if (err.response.status === 500) {
-        setMessage("There was a problem with the server");
+        setMessage('There was a problem with the server');
       } else {
         setMessage(err.response.data.msg);
       }
@@ -79,7 +79,7 @@ const FileUpload = () => {
         <div className='row mt-5'>
           <div className='col-md-6 m-auto'>
             <h3 className='text-center'>{uploadedFile.fileName}</h3>
-            <img style={{ width: "100%" }} src={uploadedFile.filePath} alt='' />
+            <img style={{ width: '100%' }} src={uploadedFile.filePath} alt='' />
           </div>
         </div>
       ) : null}
